@@ -2,6 +2,11 @@
 
 @section('title', 'Hubungi Konsultan Pajak Profesional | Jakarta Selatan')
 
+@php
+    use App\Models\PageSection;
+    $contact = PageSection::getAll('contact');
+@endphp
+
 @section('content')
     {{-- CUSTOM CSS UNTUK GRADIENT, WARNA, DAN ANIMASI BACKGROUND --}}
     <style>
@@ -92,10 +97,10 @@
             
             <header class="text-center mb-10">
                 <h1 class="text-5xl lg:text-5xl font-extrabold tax-blue mb-2 leading-tight">
-                    Sistem Konsultasi Cepat (3 Langkah)
+                    {{ $contact['hero_title'] ?? 'Sistem Konsultasi Cepat (3 Langkah)' }}
                 </h1>
                 <p class="text-xl text-gray-600 max-w-xl mx-auto">
-                    Hubungi tim kami di Jakarta Selatan sekarang. Kami menjamin kerahasiaan dan respons profesional.
+                    {{ $contact['hero_subtitle'] ?? 'Hubungi tim kami di Jakarta Selatan sekarang.' }}
                 </p>
             </header>
 
@@ -107,10 +112,10 @@
                     {{-- Blok 1: WhatsApp (TRICK MARKETING) --}}
                     <div class="p-5 bg-tax-accent/10 rounded-lg border-l-4 border-tax-accent shadow-lg hover:shadow-xl transition duration-300">
                         <h3 class="text-2xl font-bold text-gray-900 flex items-center mb-1">
-                            <span class="text-3xl mr-3 tax-accent">🚀</span> Respon Instan (Prioritas)
+                            <span class="text-3xl mr-3 tax-accent">🚀</span> {{ $contact['whatsapp_title'] ?? 'Respon Instan (Prioritas)' }}
                         </h3>
-                        <p class="text-lg font-extrabold text-tax-accent">0858-9075-0820</p>
-                        <p class="text-sm text-gray-500 mt-1">Gunakan WhatsApp untuk balasan tercepat (5 Menit).</p>
+                        <p class="text-lg font-extrabold text-tax-accent">{{ $settings['whatsapp_display'] ?? '0858-9075-0820' }}</p>
+                        <p class="text-sm text-gray-500 mt-1">{{ $contact['whatsapp_note'] ?? 'Gunakan WhatsApp untuk balasan tercepat.' }}</p>
                     </div>
 
                     {{-- Blok 2: Alamat & Peta --}}
@@ -118,10 +123,10 @@
                         <h3 class="text-2xl font-bold text-gray-900 flex items-center mb-1">
                             <span class="text-3xl mr-3 tax-blue">📍</span> Kantor Pusat Jakarta Selatan
                         </h3>
-                        <p class="text-md text-gray-700 font-medium">Jl. Prof. Dr. Satrio No. 12, Kuningan, Setiabudi, Jakarta Selatan, 12940</p>
+                        <p class="text-md text-gray-700 font-medium">{{ $settings['contact_address'] ?? 'Jl. Prof. Dr. Satrio No. 12, Kuningan, Setiabudi, Jakarta Selatan, 12940' }}</p>
                         <div class="mt-4 w-full h-40 bg-gray-200 rounded-lg overflow-hidden border border-gray-300">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.275510659779!2d106.8228183147169!3d-6.223053895493054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4e99d8689%3A0xc3f6d71b8d6f5f9e!2sKuningan%2C%20Setiabudi%2C%20South%20Jakarta%20City%2C%20Jakarta!5e0!3m2!1sen!2sid!4v1634024479577!5m2!1sen!2sid" 
+                                src="{{ $settings['google_maps_embed'] ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.275510659779!2d106.8228183147169!3d-6.223053895493054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4e99d8689%3A0xc3f6d71b8d6f5f9e!2sKuningan%2C%20Setiabudi%2C%20South%20Jakarta%20City%2C%20Jakarta!5e0!3m2!1sen!2sid!4v1634024479577!5m2!1sen!2sid' }}"
                                 width="100%" 
                                 height="100%" 
                                 style="border:0;" 
@@ -139,7 +144,7 @@
                     {{-- TRICK MARKETING: SCARCITY/FOMO ALERT --}}
                     <div class="p-3 mb-4 rounded-lg bg-red-100 border border-red-500 shadow-inner text-center">
                          <p class="text-md font-extrabold text-red-700">
-                            PENTING: Amankan Slot Konsultasi GRATIS Anda SEKARANG!
+                            {{ $contact['scarcity_text'] ?? 'PENTING: Amankan Slot Konsultasi GRATIS Anda SEKARANG!' }}
                         </p>
                     </div>
 
@@ -184,7 +189,7 @@
             var pesan = document.getElementById('input_pesan').value;
             
             // Nomor WhatsApp tujuan
-            var waNumber = '6285890750820'; 
+            var waNumber = '{{ $settings["whatsapp_number"] ?? "6285890750820" }}'; 
 
             // TRICK MARKETING: Pesan yang telah diformat
             var waMessage = `Halo Tim Konsultan Pajak,\n\nSaya *${nama}* (${telepon}) ingin Konsultasi GRATIS. \n\n*Pesan Singkat:*\n${pesan}\n\nMohon direspon secepatnya. Terima kasih.`;

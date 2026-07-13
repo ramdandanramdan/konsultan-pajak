@@ -1,12 +1,8 @@
 @php
     use Illuminate\Support\Facades\Auth;
-    // Mendapatkan nama route saat ini untuk highlighting navigasi
     $currentRouteName = Route::currentRouteName();
-
-    // Tambahkan variabel untuk mengecek apakah kita berada di halaman utama (route = '/')
     $isHome = $currentRouteName === 'home' || $currentRouteName === null || ($currentRouteName === 'welcome' && Route::has('welcome'));
 
-    // Definisi Link Navigasi agar bisa diakses di Desktop dan Mobile
     $navLinks = [
         'home' => ['label' => 'Beranda', 'url' => route('home'), 'is_active' => $isHome],
         'company.profile' => ['label' => 'Profil Perusahaan', 'url' => route('company.profile')],
@@ -15,6 +11,11 @@
         'knowledge' => ['label' => 'Knowledge', 'url' => route('knowledge')],
         'contact' => ['label' => 'Contact Us', 'url' => route('contact')],
     ];
+
+    $siteName = $settings['site_name'] ?? 'KONSULTAN PAJAK';
+    $siteNameParts = explode(' ', $siteName);
+    $siteNameFirst = $siteNameParts[0] ?? 'KONSULTAN';
+    $siteNameSecond = $siteNameParts[1] ?? 'PAJAK';
 @endphp
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Konsultan Pajak - @yield('title', 'Solusi Pajak Terpercaya')</title>
+    <title>{{ $settings['site_name'] ?? 'Konsultan Pajak' }} - @yield('title', $settings['site_tagline'] ?? 'Solusi Pajak Terpercaya')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
     {{-- 💡 TAMBAHKAN LIBRARY AOS CSS DI SINI --}}
@@ -169,7 +170,7 @@
                 
                 {{-- LOGO (Link Utama, sudah benar) --}}
                 <a href="{{ route('home') }}" class="flex-shrink-0 text-3xl font-extrabold tracking-tight text-main-color">
-                    KONSULTAN <span class="text-gray-900">PAJAK</span>
+                    {{ $siteNameFirst }} <span class="text-gray-900">{{ $siteNameSecond }}</span>
                 </a>
 
                 <div class="hidden md:flex items-center space-x-12"> 
@@ -297,11 +298,10 @@
                 {{-- Kolom 1: Logo & Deskripsi Singkat --}}
                 <div data-aos="fade-up" data-aos-delay="0">
                     <a href="{{ route('home') }}" class="flex-shrink-0 text-3xl font-extrabold tracking-tight text-white inline-block">
-                        KONSULTAN <span class="text-blue-200">PAJAK</span> 
-                        {{-- Menggunakan text-blue-200 sebagai highlight di atas main color --}}
+                        {{ $siteNameFirst }} <span class="text-blue-200">{{ $siteNameSecond }}</span> 
                     </a>
                     <p class="mt-4 text-sm text-blue-100 max-w-xs mx-auto md:mx-0">
-                        Solusi pajak terpercaya untuk bisnis Anda. Kami membantu menciptakan kepatuhan & efisiensi finansial.
+                        {{ $settings['footer_description'] ?? 'Solusi pajak terpercaya untuk bisnis Anda.' }}
                     </p>
                 </div>
 
@@ -324,15 +324,15 @@
                         <li class="flex items-center justify-center md:justify-start">
                             {{-- Ikon diubah menjadi text-blue-200 untuk sedikit kontras --}}
                             <svg class="w-5 h-5 mr-2 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <span>Jl. Contoh No. 123, Jakarta</span>
+                            <span>{{ $settings['contact_address'] ?? 'Jl. Contoh No. 123, Jakarta' }}</span>
                         </li>
                         <li class="flex items-center justify-center md:justify-start">
                             <svg class="w-5 h-5 mr-2 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <span>info@konsultanpajak.com</span>
+                            <span>{{ $settings['contact_email'] ?? 'info@konsultanpajak.com' }}</span>
                         </li>
                         <li class="flex items-center justify-center md:justify-start">
                             <svg class="w-5 h-5 mr-2 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                            <span>+62 812-3456-7890</span>
+                            <span>{{ $settings['contact_phone'] ?? '+62 812-3456-7890' }}</span>
                         </li>
                     </ul>
                 </div>
@@ -342,16 +342,16 @@
                     <h3 class="text-lg font-semibold text-white mb-4">Ikuti Kami</h3>
                     <div class="flex justify-center md:justify-start space-x-4">
                         {{-- Ikon diubah menjadi text-white dengan hover:text-blue-200 --}}
-                        <a href="#" class="text-white hover:text-blue-200 smooth-transition" aria-label="Facebook">
+                        <a href="{{ $settings['social_facebook'] ?? '#' }}" class="text-white hover:text-blue-200 smooth-transition" aria-label="Facebook">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
                         </a>
-                        <a href="#" class="text-white hover:text-blue-200 smooth-transition" aria-label="Twitter">
+                        <a href="{{ $settings['social_twitter'] ?? '#' }}" class="text-white hover:text-blue-200 smooth-transition" aria-label="Twitter">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012 10.77a4.095 4.095 0 003.29 4.026 4.097 4.097 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.271a11.616 11.616 0 006.29 1.84" /></svg>
                         </a>
-                        <a href="#" class="text-white hover:text-blue-200 smooth-transition" aria-label="Instagram">
+                        <a href="{{ $settings['social_instagram'] ?? '#' }}" class="text-white hover:text-blue-200 smooth-transition" aria-label="Instagram">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.792.01 3.71.048 1.05.035 1.83.148 2.504.42 1.057.4 1.748 1.091 2.14 2.141.27.674.383 1.45.418 2.504.038.918.047 1.28.047 3.71s-.01 2.792-.048 3.71c-.035 1.05-.148 1.83-.42 2.504-.4 1.057-1.091 1.748-2.141 2.14-.674.27-1.45.383-2.504.418-.918.038-1.28.047-3.71.047s-2.792-.01-3.71-.048c-1.05-.035-1.83-.148-2.504-.42-1.057-.4-1.748-1.091-2.14-2.141-.27-.674-.383-1.45-.418-2.504-.038-.918-.047-1.28-.047-3.71s.01-2.792.048-3.71c.035-1.05.148-1.83.42-2.504.4-1.057 1.091-1.748 2.141-2.14.674-.27 1.45-.383 2.504-.418C9.517 2.01 9.88 2 12.315 2zm0 0l.011 7.113A7.123 7.123 0 0019.429 12h-7.113A7.123 7.123 0 0012.315 2zm0 1.5c-2.485 0-2.796.01-3.791.048-1.037.036-1.688.148-2.145.34-.482.203-.76.478-1.044.762-.284.283-.559.562-.762 1.044-.192.457-.304 1.108-.34 2.145-.038.995-.048 1.306-.048 3.791s.01 2.796.048 3.791c.036 1.037.148 1.688.34 2.145.203.482.478.76.762 1.044.283.284.562.559 1.044.762.457.192 1.108.304 2.145.34.995.038 1.306.048 3.791.048s2.796-.01 3.791-.048c1.037-.036 1.688-.148 2.145-.34.482-.203.76-.478.762-1.044.284-.283.562-.559.762-1.044.192-.457.304-1.108.34-2.145.038-.995.048-1.306.048-3.791s-.01-2.796-.048-3.791c-.036-1.037-.148-1.688-.34-2.145-.203-.482-.478-.76-.762-1.044-.283-.284-.562-.559-1.044-.762-.457-.192-1.108-.304-2.145-.34C14.811 3.51 14.5 3.5 12.015 3.5zm0 2.5c2.31 0 4.19 1.88 4.19 4.19s-1.88 4.19-4.19 4.19-4.19-1.88-4.19-4.19 1.88-4.19 4.19-4.19zm0 1.5c1.474 0 2.69 1.216 2.69 2.69s-1.216 2.69-2.69 2.69-2.69-1.216-2.69-2.69 1.216-2.69 2.69-2.69zm5.228-5.344a1.076 1.076 0 00-1.075-1.076 1.076 1.076 0 00-1.076 1.076 1.076 1.076 0 001.076 1.076 1.076 1.076 0 001.075-1.076z" clip-rule="evenodd" /></svg>
                         </a>
-                        <a href="#" class="text-white hover:text-blue-200 smooth-transition" aria-label="LinkedIn">
+                        <a href="{{ $settings['social_linkedin'] ?? '#' }}" class="text-white hover:text-blue-200 smooth-transition" aria-label="LinkedIn">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.529-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
                         </a>
                     </div>
