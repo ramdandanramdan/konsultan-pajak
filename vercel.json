@@ -12,8 +12,12 @@
     ],
     "routes": [
         {
-            "src": "/(css|js|fonts|images)/(.*)",
+            "src": "/(css|js|fonts|images|img)/(.*)",
             "dest": "public/$1/$2"
+        },
+        {
+            "src": "/(.+\\.(png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|eot))",
+            "dest": "public/$1"
         },
         {
             "src": "/storage/(.*)",
