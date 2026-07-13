@@ -56,9 +56,12 @@
         }
     },
     "config": {
-        "optimize-autoloader": false,
+        "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "8.0"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
