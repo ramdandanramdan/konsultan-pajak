@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - @yield('title', 'Dashboard')</title>
+    <title>Konsultan Pajak - @yield('title', 'Dashboard')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -211,7 +211,7 @@
                 </div>
                 <div class="kp-collapse-logo">
                     <p class="text-[13px] font-extrabold text-white leading-tight tracking-tight">Konsultan Pajak</p>
-                    <p class="text-[9px] font-semibold text-amber-400/70 uppercase tracking-[0.15em]">admin panel</p>
+                    <p class="text-[9px] font-semibold text-amber-400/70 uppercase tracking-[0.15em]">{{ $user->name ?? 'Admin' }}</p>
                 </div>
             </a>
             <button @click="sidebarCollapsed = !sidebarCollapsed"
@@ -395,7 +395,7 @@
         </main>
 
         <footer class="px-4 sm:px-6 lg:px-8 py-3 border-t border-gray-200/50">
-            <p class="text-[11px] text-gray-400 text-center">&copy; {{ date('Y') }} Konsultan Pajak &middot; Admin Panel</p>
+            <p class="text-[11px] text-gray-400 text-center">&copy; {{ date('Y') }} Konsultan Pajak &middot; {{ $user->name ?? 'Admin' }}</p>
         </footer>
     </div>
 </div>
