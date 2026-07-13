@@ -19,7 +19,6 @@ vite.config.js
 webpack.mix.js
 package.json
 package-lock.json
-composer.lock
 storage/logs/*
 storage/framework/cache/*
 storage/framework/sessions/*
