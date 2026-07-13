@@ -48,7 +48,9 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "vercel": []
+        "vercel": [
+            "@php artisan package:discover --ansi"
+        ]
     },
     "extra": {
         "laravel": {
