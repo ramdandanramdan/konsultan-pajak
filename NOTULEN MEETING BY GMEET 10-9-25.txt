@@ -1,0 +1,92 @@
+NOTULEN MEETING BY GMEET 10-9-25
+
+fitur (lebih untuk memudahkan user/dev)
+backend
+
+perpustakaan yang kaya fitur
+
+terkait Domain / Sub Domain
+
+data
+table, no aturan, jenis aturan, deskripsi, lokasi
+
+
+konsultan pajak
+website isinya aturan yang lengkap
+
+system login (sso google)
+dan setelah user login bisa dapat mengunjungi/menggunakan fitter fitur seperti yang berbayar (intinya menyamankan user)
+
+
+
+====================================================
+
+Membuat website baru untuk company baru dibidang KONSULTAN PAJAK, website ini akan menjadi PUSAT INFORMASI & EDUKASI TENTANG PERPAJAKAN
+
+dengan DESIGN YANG fitur (lebih untuk memudahkan user/dev)
+backend
+
+perpustakaan yang kaya fitur
+
+terkait Domain / Sub Domain
+
+data
+table, no aturan, jenis aturan, deskripsi, lokasi
+
+
+konsultan pajak
+website isinya aturan yang lengkap
+
+system login (sso google)
+dan setelah user login bisa dapat mengunjungi/menggunakan fitur fitur seperti berbayar versi FREE (menyamankan user)
+
+
+
+====================================================
+
+Membuat website baru untuk company baru dibidang KONSULTAN PAJAK,
+
+TUJUAN: website ini akan menjadi PUSAT INFORMASI & EDUKASI TENTANG PERPAJAKAN (LENGKAP DAN TERUPDATE)
+
+DESIGN: PROFESSIONAL, MODERN, INTERAKTIF DAN UI/UX FRIENDLY (SMOOTHANIMATION LAYAKANYA WEBSITE RESMI) dan ada REFERENSI design website dari "peraturan.bpk.go.id" sebagai contoh design,  Design hyperlink Dinamis, Tampilan Informasi seperti pada ortax/datacenter
+Ada Effect Ketika link di salin (muncul pop up dengan design dan effect yang menarik), RESPONSIVE: DESKTOP. TABLET, MOBILE FIRENDLY
+
+============================================
+
+Terhubung dengan sistem pencarian dan filter berdasarkan topik atau jenis regulasi.
+
+website nanti terdiri ada 3 halaman Utama (DAN BISA KITA TAMBAH LAGI PAGESNYA SEPERTI BERANDA, CONTACT) yaitu:
+
+a. Company Profile / Identity (Static)
+
+Menampilkan profil, visi, misi, dan identitas brand.Bersifat statis dan berfungsi sebagai halaman pengenalan.
+
+b. News / Portal Berita (Subdomain – Dinamis)
+
+Berisi berita yang dibuat oleh tim internal (SYSTEM ADMINISTRATOR DENGAN SYSTEM CRUD). Menyediakan ruang bagi pembaca untuk mengirim opini atau artikel. Memiliki fitur kategorisasi berita dan sistem moderasi konten.
+
+c. Knowledge (Subdomain – Dinamis)
+
+Menyediakan database peraturan perpajakan. Dilengkapi e-book, artikel pengetahuan, dan modul e-learning. Terhubung dengan sistem pencarian dan filter berdasarkan topik atau jenis regulasi.
+
+==================================
+
+FITUR:
+
+AUTH/LOGIN MENGGUNAKAN SSO (SINGLE SIGN-ON) GOOGLE LOGIN KEMUNGKINANA MENGGUNAKAN API
+SYTEM SCRUD ADMIN (update berita, opini, dan materi edukatif) KEMUNGKINAN untuk di update news/portal & update knowledge YANG TERINTEGRASI DENGAN USER
+
+
+
+=====================================================
+
+referensi bpk
+
+beranda: highlight, CTA hapus ganti search enggine, icon whatsappp di beranda pojok kanan untuk mengarahkan ke halaman about us, BERITA BERITA HOT , BEST DARI KNOWLEDGE, ANIMATE ON SCROOLL ada CTA untuk ke contact us
+
+profile perusahaan (design GEMINI)
+
+layanan kami (design GEMINI)
+
+NEWS filter 3 kategory 5 berita
+knowledge filter 3 kategory 5 berita

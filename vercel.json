@@ -1,0 +1,54 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "api/index.php",
+            "use": "vercel-php@0.5.5"
+        },
+        {
+            "src": "public/**",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(css|js|fonts|images)/(.*)",
+            "dest": "public/$1/$2"
+        },
+        {
+            "src": "/storage/(.*)",
+            "dest": "public/storage/$1"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "public/favicon.ico"
+        },
+        {
+            "src": "/robots.txt",
+            "dest": "public/robots.txt"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
+    ],
+    "env": {
+        "APP_NAME": "Konsultan Pajak",
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "APP_URL": "https://konsultan-pajak.vercel.app",
+        "APP_KEY": "base64:agxsR5UwczQIxIiClB18qBNG1ZFSgXGLma8//rpG5SM=",
+        "DB_CONNECTION": "mysql",
+        "DB_HOST": "gateway01.ap-southeast-1.prod.aws.tidbcloud.com",
+        "DB_PORT": "4000",
+        "DB_DATABASE": "konsultan_pajak",
+        "DB_USERNAME": "ie7yLtsh2dkEY2u.root",
+        "DB_PASSWORD": "H98hOhPQl1hGyrS6",
+        "CACHE_DRIVER": "array",
+        "SESSION_DRIVER": "database",
+        "QUEUE_CONNECTION": "sync",
+        "LOG_CHANNEL": "stderr",
+        "VIEW_COMPILED_PATH": "/tmp/views",
+        "MYSQL_ATTR_SSL_CA": "/etc/ssl/certs/ca-certificates.crt"
+    }
+}
